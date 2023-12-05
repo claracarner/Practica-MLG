@@ -5,8 +5,10 @@ date: "2023-12-05"
 output: html_document
 ---
 
+## Predicció del número d'incendis a les províncies de l'estat espanyol durant un mes concret
 
 Descargo dades
+
 ```{r}
 setwd("/Users/claracarnermarsal/Desktop/1er semestre 5è/MLGz/PRACTICA MLG CLARA I VENTU ")
 data <- read.table("datos_2003.txt", header = TRUE, sep = "\t")
@@ -14,7 +16,8 @@ save(data, file = "dades_mlg.RData")
 load("dades_mlg.RData")
 
 ```
-Iniciem amb base de dades bona 
+
+Iniciem amb base de dades bona
 
 ```{r}
 load("dades_mlg.RData")
@@ -22,4 +25,22 @@ dades1<-data
 head(dades1)
 ```
 
--
+**Resposta binària**
+
+*2. Ajusteu un model de resposta binaria (y_bin) emprant la funció link logit. Al tenir moltes variables*
+
+*predictores, el procés de selecció de variables, el podeu fer de forma automàtica (stepwise)*
+
+*emprant algun criteri.*
+
+```{r}
+model_resp_binaria <- step(glm(y_bin ~ ., data = dades1, family = binomial(link = "logit")), direction = "both", trace = 0) #trace 0 pq no surti tot el procés
+
+# Resumen del modelo final
+summary(modelo_stepwise)
+
+```
+
+S'ajusta un model de regressió logística utilitzant totes les variables del conjunt de dades **`datos`** com a predictors per predir la variable de resposta binària **`y_bin`**. S'utilitza l'enllaç logit, que és apropiat per a models de regressió logística.
+
+S'aplica la funció **`step`** al model de regressió logística inicial, per realitzar una selecció automàtica de variables utilitzant el criteri AIC. L'opció **`direction = "both"`** indica que s'han de considerar tant addicions com eliminacions de variables durant el procés stepwise. L'argument **`trace = 0`** evita imprimir informació detallada del procés a la consola.
