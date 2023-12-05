@@ -1,0 +1,25 @@
+---
+title: "Practica mlg"
+author: "Clara  and Marta"
+date: "2023-12-05"
+output: html_document
+---
+
+
+Descargo dades
+```{r}
+setwd("/Users/claracarnermarsal/Desktop/1er semestre 5è/MLGz/PRACTICA MLG CLARA I VENTU ")
+data <- read.table("datos_2003.txt", header = TRUE, sep = "\t")
+save(data, file = "dades_mlg.RData")
+load("dades_mlg.RData")
+
+```
+Iniciem amb base de dades bona 
+
+```{r}
+load("dades_mlg.RData")
+dades1<-data
+head(dades1)
+```
+
+-
